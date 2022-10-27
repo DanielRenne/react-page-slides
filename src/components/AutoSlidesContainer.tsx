@@ -60,6 +60,7 @@ export class AutoSlidesContainer extends React.Component<
   private touchStart: number;
   // private prevWheelDelta = 0;
   private block = false;
+  private trackPadEvent = false;
 
   componentDidMount() {
     window.addEventListener("wheel", this.handleMouseWheel, { passive: false });
@@ -92,16 +93,25 @@ export class AutoSlidesContainer extends React.Component<
 
   handleMouseWheel = (event: WheelEvent) => {
     event.preventDefault();
+
+
     const delta = -event.deltaY;
+    
+
     if (!this.block) {
-      // if (
-      //   Math.abs(this.prevWheelDelta) < Math.abs(delta) ||
-      //   delta % 120 === 0
-      // ) {
+      if (Math.abs(event.deltaY) < 100) {
+        this.block = true;
+        // console.log("Event", event);
+        this.trackPadEvent = true;
+        setTimeout(() => {
+          this.trackPadEvent = false;
+          this.block = false;
+        }, 1500);
+      }
+      
       this.updateCurrentPage(delta < 0);
-      // }
     }
-    // this.prevWheelDelta = delta;
+
   };
 
   handleKeyDown = (event: KeyboardEvent) => {
@@ -176,7 +186,10 @@ export class AutoSlidesContainer extends React.Component<
   }
 
   onTransitionEnd = () => {
-    this.block = false;
+    if (!this.trackPadEvent){
+      this.block = false;
+    }
+      
   };
 
   render() {
