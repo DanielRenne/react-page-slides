@@ -11,6 +11,7 @@ interface IPageSlidesProps {
   slides: ISlideConfig[];
   currentSlideIndex?: number;
   onChange?: (index: number) => void;
+  height?: any;
 }
 
 interface IPageSlidesState {
@@ -45,6 +46,9 @@ export class PageSlides extends React.Component<
   };
 
   getHeight() {
+    if (this.props.height !== "undefined") {
+      return this.props.height;
+    }
     if (typeof window !== `undefined`) {
       return window.innerHeight;
     }
