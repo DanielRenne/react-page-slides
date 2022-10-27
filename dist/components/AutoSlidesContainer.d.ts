@@ -28,7 +28,6 @@ export declare class AutoSlidesContainer extends React.Component<IAutoSlidesCont
     };
     private touchStart;
     private block;
-    private trackPadEvent;
     componentDidMount(): void;
     componentDidUpdate(prevProps: IAutoSlidesContainerProps, prevState: IAutoSlidesContainerState): void;
     componentWillUnmount(): void;

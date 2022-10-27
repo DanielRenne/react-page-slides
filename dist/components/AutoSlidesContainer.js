@@ -26,22 +26,18 @@ var AutoSlidesContainer = /** @class */ (function (_super) {
         };
         // private prevWheelDelta = 0;
         _this.block = false;
-        _this.trackPadEvent = false;
         _this.handleMouseWheel = function (event) {
             event.preventDefault();
             var delta = -event.deltaY;
             if (!_this.block) {
-                if (Math.abs(event.deltaY) < 100) {
-                    _this.block = true;
-                    // console.log("Event", event);
-                    _this.trackPadEvent = true;
-                    setTimeout(function () {
-                        _this.trackPadEvent = false;
-                        _this.block = false;
-                    }, 1500);
-                }
+                // if (
+                //   Math.abs(this.prevWheelDelta) < Math.abs(delta) ||
+                //   delta % 120 === 0
+                // ) {
                 _this.updateCurrentPage(delta < 0);
+                // }
             }
+            // this.prevWheelDelta = delta;
         };
         _this.handleKeyDown = function (event) {
             if (!_this.block) {
@@ -68,9 +64,7 @@ var AutoSlidesContainer = /** @class */ (function (_super) {
             }
         };
         _this.onTransitionEnd = function () {
-            if (!_this.trackPadEvent) {
-                _this.block = false;
-            }
+            _this.block = false;
         };
         return _this;
     }
