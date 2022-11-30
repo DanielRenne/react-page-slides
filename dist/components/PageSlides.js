@@ -38,6 +38,9 @@ var PageSlides = /** @class */ (function (_super) {
         window.removeEventListener("resize", this.onResize);
     };
     PageSlides.prototype.getHeight = function () {
+        if (this.props.height !== "undefined") {
+            return this.props.height;
+        }
         if (typeof window !== "undefined") {
             return window.innerHeight;
         }

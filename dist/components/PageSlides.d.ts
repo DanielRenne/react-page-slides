@@ -8,6 +8,7 @@ interface IPageSlidesProps {
     slides: ISlideConfig[];
     currentSlideIndex?: number;
     onChange?: (index: number) => void;
+    height?: any;
 }
 interface IPageSlidesState {
     height: number;
@@ -18,12 +19,12 @@ export declare class PageSlides extends React.Component<IPageSlidesProps, IPageS
         transitionSpeed: number;
     };
     state: {
-        height: number;
+        height: any;
     };
     componentDidMount(): void;
     componentWillUnmount(): void;
     onResize: () => void;
-    getHeight(): number;
+    getHeight(): any;
     render(): JSX.Element;
 }
 export {};
